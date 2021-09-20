@@ -1,0 +1,53 @@
+1. select *
+from city
+where name like 'a%'
+ 
+TAS PATS KAIP 
+
+select count(*), sum(population)
+from city
+where name like 'a%'
+
+
+
+2. select count(*), sum(population), avr(population), min(population), max(population)
+from city
+where countrycode = 'LTU';
+
+TAS PATS KAIP 
+
+select *
+from city
+where countrycode = 'LTU';
+
+UZDAVINYS:
+sugrupuoti valstybes pagal zemyna: parodyti kiek yra valstybiu zemyne, bendra gyventoju kieki, gyventoju vidurki
+
+select count(*), sum(population) as bendras_gyvenimo_kiekis, avg(population) as vidurkis, continent as zemynas
+from world.country
+group by continent;
+
+3. select count(*), sum(population), avg(population), min(population), max(population), countrycode, district
+from city
+group by CountryCode, district
+
+4. select count(*), sum(population), avg(population), min(population), max(population), countrycode, district
+from city
+where name like 'a%'
+group by CountryCode, district 
+having count(*) > 2;
+
+UZDAVINYS:
+
+kontinenta, regiona, bendras valstybiu plotas, bendras valstybiu gyventoju kiekis, valstybiu plotu vidurkis
+tik nepriklausomas valstybes
+pagal kontinenta ir regiona
+nerodyti mazesniu valstybiu plotu vidurkiu negu 1000
+
+select count(*) as salys, continent as zemynas, region as regionas, sum(surfacearea) as bendras_valst_plot, 
+sum(population) as bendras_gyv_kiekis, avg(surfacearea) as bendras_valst_plotu_vid
+from country
+where indepyear is not null
+group by continent, region
+having avg(surfacearea) > 1000
+order by continent

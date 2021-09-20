@@ -1,0 +1,78 @@
+AGREGACINES FUNKCIJOS
+
+Jeigu naudoju agregacines funkcijas SELECT'E negaliu naudoti NAME, bet galiu naudoti tuos laukus kurie yra groupe bajuje
+ 
+REIKSMES
+
+count - suskaiciuos visus imanomus elementus
+sum - susumuos viska
+avg - ras vidurki
+min - ras pacia maziausia reiksme
+max - ras didziausia reiksme
+
+SUDEDAMOJI DALIS:
+
+GROUP BY - sugrupuoja, suskaido rezultata i grupeles ir kiekviena grupele rezultate bus vienas rezultatinis irasas
+
+I etapas:
+
+select count(*), sum(population), avg(population), min(population), max(population), countrycode, district
+from city
+where name like 'a%'
+group by CountryCode, district
+
+PAAISKINIMAS:
+1. from
+2. where - salyga filtruoti irasus
+3. group by
+4. selector
+
+SUDEDAMOJI DALIS:
+Having - dar karteli pergrupuos dalis
+
+II etapas:
+select count(*), sum(population), avg(population), min(population), max(population), countrycode, district
+from city
+where name like 'a%'
+group by CountryCode, district 
+having avg(population) > 500000
+
+
+PAAISKINIMAS:
+1. from
+2. where
+3. group by
+4. having - salyga filtruoti grupuotus irasus
+5. selector
+
+SUDEDAMOJI DALIS:
+order by - salyga rusiuoti grupuotus irasus
+
+III etapas:
+
+select count(*), sum(population), avg(population), min(population), max(population), countrycode, district
+from city
+where name like 'a%'
+group by CountryCode, district 
+having count(*) > 2
+order by avg(population) desc
+
+PAAISKINIMAS:
+1. from
+2. where
+3. group by
+4. having
+5. order by
+
+WHERE ...IS NULL arba IS NOT NULL
+
+Išfiltruos duomenis kurie yra lygus null.
+
+FINALE SUDEDAMOSIOS DALYS:
+
+1. SELECT - nurodymas serveriui duok man kazka tai
+2. FROM - nurodo kuriame faile rinksim duomenis
+3. WHERE - nurodo kokie reikalavimai filtruojant duomenis
+4. GROUP BY - sugrupuoja, suskaido rezultata i grupeles ir kiekviena grupele rezultate bus vienas rezultatinis irasas
+5. HAVING- salyga filtruoti grupuotus irasus
+4. ORDER BY - salyga rusiuoti grupuotus irasus
