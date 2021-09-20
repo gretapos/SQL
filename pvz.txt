@@ -37,17 +37,17 @@ where name like 'a%'
 group by CountryCode, district 
 having count(*) > 2;
 
-UZDAVINYS:
+UZDAVINYS NAMU DARBAMS:
 
 kontinenta, regiona, bendras valstybiu plotas, bendras valstybiu gyventoju kiekis, valstybiu plotu vidurkis
 tik nepriklausomas valstybes
 pagal kontinenta ir regiona
 nerodyti mazesniu valstybiu plotu vidurkiu negu 1000
 
-select count(*) as salys, continent as zemynas, region as regionas, sum(surfacearea) as bendras_valst_plot, 
-sum(population) as bendras_gyv_kiekis, avg(surfacearea) as bendras_valst_plotu_vid
+
+select Continent as zemynas, Region as regionas, sum(SurfaceArea) as bendras_plotas, sum(Population) as gyb_kiekis, avg(SurfaceArea) as vid_plotas, sum(SurfaceArea) / sum(Population) as gyv_i_kv_km
 from country
-where indepyear is not null
-group by continent, region
-having avg(surfacearea) > 1000
-order by continent
+where IndepYear is not null
+group by Continent, Region
+having avg(SurfaceArea) > 1000
+order by 6 desc

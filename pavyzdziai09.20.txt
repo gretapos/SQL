@@ -1,0 +1,19 @@
+
+SELECT country.name as salis, city.name as miestas
+FROM city, country
+where countrycode = code
+
+valstybes kodas, valstybes pavadinimas, miestu toje valstybeje kiekis
+surusiuotas pagal miestu toje valstybeje kieki mazejimo tvarka
+
+select code, country.name, count(*)
+from country, city
+where country.code = city.CountryCode
+group by code, country.name
+
+NAMU DARBAS
+
+valstybes kodas, miesto pavadinimas, valstybes pavadinimas, oficialiu kalbu kiekis
+tik zemynuose: europa ir afrika
+kur daugiau nei viena oficiali kalba
+surusiuota pagal oficialiu kalbu kieki mazejimo tvarka, valstybes pavadinima didejimo tvarka
