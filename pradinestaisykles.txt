@@ -1,0 +1,109 @@
+-- KOMENTARAS
+
+TEKSTAS
+
+stringas 'labas';
+
+; Salygai uzbaigti
+
+* visi stulpeliai isvardinti duomenu bazeje 
+
+_ atskirti zodzius, negalima su tarpais
+
+SQL rodo irasu 1000 standartiskai, galima pasididinti einant į query > limit rows
+
+SELECT 
+FROM
+WHERE 
+ORDER BY;
+
+1. Atliekamas FROM.
+2. Atliekamas WHERE.
+3. Atliekamas ORDER BY.
+4. Ir filtruojamas SELECT.
+
+
+
+SELECT name, district
+FROM city
+WHERE not(population > 1000 or population < 500 or CountryCode <> 'NDL')
+ORDER BY population DESC;
+
+PAAISKINIMAS:
+1. Atliekamas FROM.
+2. Atliekamas WHERE.
+3. Atliekamas ORDER BY.
+4. Ir tik tada filtruojamas SELECT.
+
+ATS.
+Surusiavo miestus pagal population MAZEJIMO tvarka.
+
+
+select *
+from city
+where countrycode = 'NDL' or countrycode = 'LTU'
+order by countrycode desc, name desc;
+
+PAAISKINIMAS:
+1. Atliekamas FROM.
+2. Atliekamas WHERE.
+3. Atliekamas ORDER BY.
+Visu pirma surusiuota mazejimo tvarka pagal valstybes koda, o po to kiekvienai valstybei miestus surusiavo didejimo tvarka pagal miesto pavadinima.
+4. Ir tik tada filtruojamas SELECT.
+
+WHERE NAME LIKE PANAUDOJIMAS
+LIKE - galima nurodyti specialius simbolius:
+% - procentas reiskia bet kiek bet kokiu simboliu gali buti. 
+
+select *
+from city
+where name like '%vil%'
+
+_ pabraukimas reiskia viena betkokia raide
+
+select *
+from city
+where name like '%v_l%'
+
+WHERE NAME LIKE '...' ESCAPE '-' (cia yra tilde) default naudoojama '\'
+select *
+from city
+where name like '%-_&' escape '-'
+reiskias suras kur yra pabraukimas
+
+JEIGU NEREIKIA ESCAPE
+
+where name like '%--%'
+
+SUDEDAMOSIOS DALYS:
+
+1. SELECT
+2. Select sudedamoji dalis yra FROM
+Tvarka sudedamuju daliu kisti negali.
+3. WHERE - nurodo kokie reikalavimai filtruojant duomenis, ir tik po to kreipia demesi i select reikalavimus
+4. ORDER BY - nurodo rusiavima
+
+
+
+SELECT
+FROM
+WHERE
+ORDER BY
+=    ar lygu
+>    ar daugiau
+<    ar maziau
+>=    ar daugiau arba lygu
+<=    ar maziau arba lygu
+<>    ar nelygu (JS !=)
+
+
+AND    loginis ir (JS &&)
+OR    loginis arba (JS ||)
+NOT    loginis ne (neiginys) (JS !)
+
+
+rusiavimo kryptys
+ASC    didejimo tvarka (default)
+DESC    mazejimo tvarka
+
+

@@ -1,0 +1,85 @@
+1. select countrycode, district as rajonas, name as pavadinimas
+from city;
+
+2. select name, select countrycode, district as rajonas, name as pavadinimas
+from city;
+
+3. select name, population/1000000 as gyv_mln
+from city;
+
+4. select name, district
+from country;
+KLAIDA: Error Code: 1054. Unknown column 'district' in 'field list'	0.000 sec
+
+5. select name, district
+from city
+where countrycode = "NDL";
+
+6. select *
+from city
+where CountryCode <> 'LTU';
+
+UZDAVINYS
+Rasti Olandijos ar Lietuvos miestu, rajonu pavadinimus, kurie yra tarp milijono ir puses milijono imtinai?
+
+select name, district
+from city
+where population =< 1000000 and population >= 500000 and countrycode = 'NDL' or countrycode = 'LTU''
+
+vs
+
+select name, district
+from city
+where not (population =< 1000000 and population >= 500000 and countrycode = 'NDL') or countrycode = 'LTU'
+
+
+not (population =< 1000000 and population >= 500000 and countrycode = 'NDL') 
+vertimas kitaip
+population > 1000000 or population < 500000 or countrycode <> 'NDL' 
+
+7. SELECT name, district
+FROM city
+WHERE not(population > 1000 or population < 500 or CountryCode <> 'NDL')
+ORDER BY population;
+
+8. select *
+from city
+where countrycode = 'NDL' or countrycode = 'LTU'
+order by countrycode desc, name desc;
+
+9.
+select *
+from city
+where name like '%vil%'
+
+10. select *
+from city
+where name like 'v%s'
+
+11. select *
+from city
+where name like '%v_l%'
+
+UZDAVINYS
+valstybes kodas ir kalbos pavadinimas
+tik oficialios kalbos prasidedancios raidemis 'd', 'e' ir 'f'
+surusiuota pagal valstybes koda didejimo ir panaudojimo procenta mazejimo
+
+select countrycode as valstybes_kodas, language as kalbos_pavadinimas, percentage as procentai
+from countrylanguage
+where isofficial = true and (language like 'd%' or language like 'e%' or language like 'f%')
+order by countrycode, percentage desc;
+
+
+UZDAVINYS:
+Tik valstybiu pavadinimai afrikoje virs 300000 gyventoju surusiuota pagal mazejimo tvarka 
+
+select name as salies_pavadinimas, continent as zemynas, population as zmoniu_skaicius
+from country
+where population > 300000 and continent = 'Africa'
+order by population desc
+
+
+
+
+
