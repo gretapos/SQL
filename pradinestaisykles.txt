@@ -87,14 +87,28 @@ Tvarka sudedamuju daliu kisti negali.
 
 SELECT
 FROM
+    [ [LEFT/RIGHT/FULL] JOIN]
 WHERE
+GROUP BY
+    UNION [ALL]
 ORDER BY
+
+insert into city
+values ('LTU', Balbieriskes)
+
 =    ar lygu
 >    ar daugiau
 <    ar maziau
 >=    ar daugiau arba lygu
 <=    ar maziau arba lygu
 <>    ar nelygu (JS !=)
+like ar panasu;
+        % - bet kiek bet kokiu
+          - vienas bet koks
+like '...' escape '~' - nurodomas escape simbolis ~
+
+is null    ar null
+is not null  ar ne null
 
 
 AND    loginis ir (JS &&)
@@ -107,3 +121,41 @@ ASC    didejimo tvarka (default)
 DESC    mazejimo tvarka
 
 
+DML - data manipulation language
+ 
+iraso pridejimas (TIK po viena)
+ 
+INSERT INTO city
+VALUES (5000, 'Balbieriškis', 'LTU', 'Prienų', 966)
+ 
+INSERT INTO city (countrycode, district, name, population)
+VALUES ('LTU', 'Jurbarko', 'Klausučiai', 902)
+ 
+
+irasu pakeitimas (VISU, kurie atitinka salyga)
+ 
+UPDATE city
+SET district = 'Jurbarko sav.', population = population + 3
+WHERE id = 5001
+ 
+UPDATE city
+SET population = population + 10
+WHERE countrycode = 'LTU'
+ 
+
+irasu ISTRINIMAS (VISU, kurie atitinka salyga)
+ 
+DELETE FROM city
+WHERE id = 5000
+ 
+DELETE FROM city
+WHERE countrycode = 'AFG'
+ 
+
+DDL - data definition language
+ 
+CREATE
+ 
+ALTER
+ 
+DROP

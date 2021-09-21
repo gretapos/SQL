@@ -1,0 +1,44 @@
+valstybes kodas, miesto pavadinimas, valstybes pavadinimas, oficialiu kalbu kiekis
+tik zemynuose: europa ir afrika
+kur daugiau nei viena oficiali kalba
+surusiuota pagal oficialiu kalbu kieki mazejimo tvarka, valstybes pavadinima didejimo tvarka
+
+
+select
+--     city.id,
+    city.name as miestas,
+    city.CountryCode as kodas,
+    country.name as valstybe,
+    count(*) as oficialios_kalbos,
+    sostines.name as sostine
+from
+    country,
+    city,
+    countrylanguage,
+    city as sostines
+where
+    country.code = city.CountryCode and
+    country.code = countrylanguage.CountryCode and
+    country.Capital = sostines.id and
+    IsOfficial = 'T' and
+    (continent = 'africa' or continent = 'europe')
+group by
+    city.id,
+    city.name,
+    city.CountryCode,
+    country.name,
+    sostines.name
+having count(*) > 1
+order by
+    count(*) desc,
+    country.name
+
+
+
+select c1.name, c2.Name as sostine
+from city c1, city c2, country
+where c1.CountryCode = country.Code and country.Capital = c2.id and c1.CountryCode = 'LTU'
+
+NAMU DARBAS
+
+atspausdinti sarasa aktoriu (vardas, pavarde, kiek tokiu filmu), kurie vaidino daugiau nei 2 'Action' filmuose
