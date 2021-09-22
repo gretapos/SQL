@@ -42,3 +42,13 @@ where c1.CountryCode = country.Code and country.Capital = c2.id and c1.CountryCo
 NAMU DARBAS
 
 atspausdinti sarasa aktoriu (vardas, pavarde, kiek tokiu filmu), kurie vaidino daugiau nei 2 'Action' filmuose
+
+select a.actor_id as id, a.first_name as vardas, a.last_name as pavarde, count(*) as filmu_kiekis
+from
+    actor a join film_actor fa on a.actor_id = fa.actor_id
+    join film_category fc on fa.film_id = fc.film_id
+    join category c on fc.category_id = c.category_id
+where
+    c.name = 'Action'
+group by a.actor_id, a.first_name, a.last_name
+having count(*) > 2
